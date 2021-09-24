@@ -41,8 +41,16 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const ms = core.getInput('LINKEDIN_TOKEN');
-            core.debug(`LinkedIn Token received`); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-            let content = fs_1.readFileSync('README.md').toString();
+            core.debug(`LinkedIn Token received: ${ms}`); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+            try {
+                let dirFiles = fs_1.readdirSync('/');
+                dirFiles.map((file) => {
+                    core.info(file);
+                });
+            }
+            catch (error) {
+            }
+            let content = fs_1.readFileSync('./README.md').toString();
             content = content.replace(/<[^>]*>/g, '')
                 // Remove setext-style headers
                 .replace(/^[=\-]{2,}\s*$/g, '')
