@@ -13,7 +13,7 @@ async function run(): Promise<void> {
     } catch (error) {
 
     }
-    let content: string = readFileSync('/README.md').toString();
+    let content: string = readFileSync('./README.md').toString();
     
     content = content.replace(/<[^>]*>/g, '')
       // Remove setext-style headers
