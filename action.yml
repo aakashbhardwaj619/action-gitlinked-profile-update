@@ -1,11 +1,12 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'GitLinked Profile Update'
+description: 'Sample JavaScript action for GitLinked Profile Update'
 inputs:
-  milliseconds: # change this
+  LINKEDIN_TOKEN:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'LinkedIn Access Token'
 runs:
   using: 'node12'
   main: 'dist/index.js'
+branding:
+  icon: 'download'  
+  color: 'blue'
