@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 async function run(): Promise<void> {
   try {
     const ms: string = core.getInput('LINKEDIN_TOKEN');
-    core.debug(`LinkedIn Token received`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    core.debug(`LinkedIn Token received: ${ms}`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
 
     let content: string = readFileSync('README.md').toString();
 
