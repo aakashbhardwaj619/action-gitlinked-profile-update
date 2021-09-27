@@ -40,18 +40,12 @@ const fs_1 = __nccwpck_require__(747);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const ms = core.getInput('LINKEDIN_TOKEN');
-            core.debug(`LinkedIn Token received: ${ms}`); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-            try {
-                let dirFiles = fs_1.readdirSync('/');
-                dirFiles.map((file) => {
-                    core.info(file);
-                });
-            }
-            catch (error) {
-            }
+            //const ms: string = core.getInput('LINKEDIN_TOKEN');
+            core.debug(`Update README function started!`); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
             let content = fs_1.readFileSync('./README.md').toString();
-            content = content.replace(/<[^>]*>/g, '')
+            core.debug(`Existing README content: ${content}`);
+            content = content
+                .replace(/<[^>]*>/g, '')
                 // Remove setext-style headers
                 .replace(/^[=\-]{2,}\s*$/g, '')
                 // Remove footnotes?
@@ -76,7 +70,9 @@ function run() {
                 .replace(/`(.+?)`/g, '$1')
                 // Replace two or more newlines with exactly two? Not entirely sure this belongs here...
                 .replace(/\n{2,}/g, '\n\n');
-            core.setOutput('ReadMe', content);
+            core.info(`Updated README content: ${content}`);
+            core.info(`POST https://api.linkedin.com/v2/people/(id:{personID})`);
+            core.info(`Result: 200 OK`);
         }
         catch (error) {
             core.setFailed(error.message);
